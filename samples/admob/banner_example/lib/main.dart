@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:video_player/video_player.dart';
 
+late VideoPlayerController _controller;
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
@@ -21,7 +23,7 @@ class BannerExample extends StatefulWidget {
 
 class BannerExampleState extends State<BannerExample> {
   List<BannerAd?> _bannerAds = List.empty(growable: true);
-  final bannerSize = 10;
+  final bannerSize = 20;
 
   final String _adUnitId = Platform.isAndroid
       ? 'ca-app-pub-3940256099942544/6300978111'
@@ -31,6 +33,12 @@ class BannerExampleState extends State<BannerExample> {
   void initState() {
     super.initState();
     _loadAd();
+    _controller = VideoPlayerController.network(
+        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
+      ..initialize().then((_) {
+        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+        setState(() {});
+      });
   }
 
   @override
@@ -41,22 +49,30 @@ class BannerExampleState extends State<BannerExample> {
           appBar: AppBar(
             title: const Text('Banner Example'),
           ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              setState(() {
+                _controller.value.isPlaying
+                    ? _controller.pause()
+                    : _controller.play();
+              });
+            },
+            child: Icon(
+              _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+            ),
+          ),
           body: ListView(
             children: [
               const ListTile(
                 title: Text('Some title'),
               ),
-              const ListTile(
-                title: Text('Some title'),
-              ),
-              const ListTile(
-                title: Text('Some title'),
-              ),
-              const ListTile(
-                title: Text('Some title'),
-              ),
-              const ListTile(
-                title: Text('Some title'),
+              Center(
+                child: _controller.value.isInitialized
+                    ? AspectRatio(
+                        aspectRatio: _controller.value.aspectRatio,
+                        child: VideoPlayer(_controller),
+                      )
+                    : Container(),
               ),
               const ListTile(
                 title: Text('Some title'),
@@ -157,6 +173,66 @@ class BannerExampleState extends State<BannerExample> {
               const ListTile(
                 title: Text('Some title'),
               ),
+              if (_bannerAds[10] != null)
+                SizedBox(
+                  width: _bannerAds[10]!.size.width.toDouble(),
+                  height: _bannerAds[10]!.size.height.toDouble(),
+                  child: AdWidget(ad: _bannerAds[10]!),
+                ),
+              if (_bannerAds[11] != null)
+                SizedBox(
+                  width: _bannerAds[11]!.size.width.toDouble(),
+                  height: _bannerAds[11]!.size.height.toDouble(),
+                  child: AdWidget(ad: _bannerAds[11]!),
+                ),
+              if (_bannerAds[12] != null)
+                SizedBox(
+                  width: _bannerAds[12]!.size.width.toDouble(),
+                  height: _bannerAds[12]!.size.height.toDouble(),
+                  child: AdWidget(ad: _bannerAds[12]!),
+                ),
+              if (_bannerAds[3] != null)
+                SizedBox(
+                  width: _bannerAds[13]!.size.width.toDouble(),
+                  height: _bannerAds[13]!.size.height.toDouble(),
+                  child: AdWidget(ad: _bannerAds[13]!),
+                ),
+              if (_bannerAds[14] != null)
+                SizedBox(
+                  width: _bannerAds[14]!.size.width.toDouble(),
+                  height: _bannerAds[14]!.size.height.toDouble(),
+                  child: AdWidget(ad: _bannerAds[14]!),
+                ),
+              if (_bannerAds[15] != null)
+                SizedBox(
+                  width: _bannerAds[15]!.size.width.toDouble(),
+                  height: _bannerAds[15]!.size.height.toDouble(),
+                  child: AdWidget(ad: _bannerAds[15]!),
+                ),
+              if (_bannerAds[16] != null)
+                SizedBox(
+                  width: _bannerAds[16]!.size.width.toDouble(),
+                  height: _bannerAds[16]!.size.height.toDouble(),
+                  child: AdWidget(ad: _bannerAds[16]!),
+                ),
+              if (_bannerAds[17] != null)
+                SizedBox(
+                  width: _bannerAds[17]!.size.width.toDouble(),
+                  height: _bannerAds[17]!.size.height.toDouble(),
+                  child: AdWidget(ad: _bannerAds[17]!),
+                ),
+              if (_bannerAds[18] != null)
+                SizedBox(
+                  width: _bannerAds[18]!.size.width.toDouble(),
+                  height: _bannerAds[18]!.size.height.toDouble(),
+                  child: AdWidget(ad: _bannerAds[18]!),
+                ),
+              if (_bannerAds[19] != null)
+                SizedBox(
+                  width: _bannerAds[19]!.size.width.toDouble(),
+                  height: _bannerAds[19]!.size.height.toDouble(),
+                  child: AdWidget(ad: _bannerAds[19]!),
+                ),
             ],
           ),
         ));
@@ -198,6 +274,7 @@ class BannerExampleState extends State<BannerExample> {
     for (var i = 0; i < _bannerAds.length; i++) {
       _bannerAds[i]?.dispose();
     }
+    _controller.dispose();
     super.dispose();
   }
 }
