@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:banner_example/native-view-example.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:video_player/video_player.dart';
@@ -43,6 +44,7 @@ class BannerExampleState extends State<BannerExample> {
 
   @override
   Widget build(BuildContext context) {
+    final nativoAdView = NativeViewExample();
     return MaterialApp(
         title: 'Banner Example',
         home: Scaffold(
@@ -80,8 +82,10 @@ class BannerExampleState extends State<BannerExample> {
               const ListTile(
                 title: Text('Some title'),
               ),
-              const ListTile(
-                title: Text('Some title'),
+              SizedBox(
+                width: double.infinity,
+                height: 400,
+                child: nativoAdView,
               ),
               const ListTile(
                 title: Text('Some title'),
