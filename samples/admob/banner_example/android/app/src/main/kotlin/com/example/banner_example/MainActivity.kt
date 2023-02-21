@@ -1,6 +1,7 @@
 package com.example.banner_example
 
 import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.engine.FlutterEngine
 
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -17,6 +18,7 @@ import com.example.banner_example.R
 // import com.example.banner_example.databinding.ActivityMainBinding
 import com.example.banner_example.AppConstants
 import net.nativo.sdk.NativoSDK
+import dev.flutter.example.NativeViewFactory
 
 class MainActivity: FlutterActivity() {
 
@@ -55,10 +57,11 @@ class MainActivity: FlutterActivity() {
 
     // }
 
-    // override fun onCreateOptionsMenu(menu: Menu): Boolean {
-    //     val inflater = menuInflater
-    //     inflater.inflate(R.menu.app_menu, menu)
-    //     return true
+    // override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
+    //     flutterEngine
+    //             .platformViewsController
+    //             .registry
+    //             .registerViewFactory("<platform-view-type>", NativeViewFactory())
     // }
 
     private val editor: SharedPreferences.Editor

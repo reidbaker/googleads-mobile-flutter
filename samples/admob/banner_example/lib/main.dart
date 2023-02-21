@@ -22,7 +22,7 @@ class BannerExample extends StatefulWidget {
 }
 
 class BannerExampleState extends State<BannerExample> {
-  List<BannerAd?> _bannerAds = List.empty(growable: true);
+  final List<BannerAd?> _bannerAds = List.empty(growable: true);
   final bannerSize = 20;
 
   final String _adUnitId = Platform.isAndroid
@@ -50,17 +50,17 @@ class BannerExampleState extends State<BannerExample> {
             title: const Text('Banner Example'),
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              setState(() {
-                _controller.value.isPlaying
-                    ? _controller.pause()
-                    : _controller.play();
-              });
-            },
-            child: Icon(
-              _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-            ),
-          ),
+                onPressed: () {
+                  setState(() {
+                    _controller.value.isPlaying
+                        ? _controller.pause()
+                        : _controller.play();
+                  });
+                },
+                child: Icon(
+                  _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+                ),
+              ),
           body: ListView(
             children: [
               const ListTile(
@@ -92,66 +92,26 @@ class BannerExampleState extends State<BannerExample> {
               const ListTile(
                 title: Text('Some title'),
               ),
-              if (_bannerAds[0] != null)
-                SizedBox(
-                  width: _bannerAds[0]!.size.width.toDouble(),
-                  height: _bannerAds[0]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[0]!),
-                ),
-              if (_bannerAds[1] != null)
-                SizedBox(
-                  width: _bannerAds[1]!.size.width.toDouble(),
-                  height: _bannerAds[1]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[1]!),
-                ),
-              if (_bannerAds[2] != null)
-                SizedBox(
-                  width: _bannerAds[2]!.size.width.toDouble(),
-                  height: _bannerAds[2]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[2]!),
-                ),
-              if (_bannerAds[3] != null)
-                SizedBox(
-                  width: _bannerAds[3]!.size.width.toDouble(),
-                  height: _bannerAds[3]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[3]!),
-                ),
-              if (_bannerAds[4] != null)
-                SizedBox(
-                  width: _bannerAds[4]!.size.width.toDouble(),
-                  height: _bannerAds[4]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[4]!),
-                ),
-              if (_bannerAds[5] != null)
-                SizedBox(
-                  width: _bannerAds[5]!.size.width.toDouble(),
-                  height: _bannerAds[5]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[5]!),
-                ),
-              if (_bannerAds[6] != null)
-                SizedBox(
-                  width: _bannerAds[6]!.size.width.toDouble(),
-                  height: _bannerAds[6]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[6]!),
-                ),
-              if (_bannerAds[7] != null)
-                SizedBox(
-                  width: _bannerAds[7]!.size.width.toDouble(),
-                  height: _bannerAds[7]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[7]!),
-                ),
-              if (_bannerAds[8] != null)
-                SizedBox(
-                  width: _bannerAds[8]!.size.width.toDouble(),
-                  height: _bannerAds[8]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[8]!),
-                ),
-              if (_bannerAds[9] != null)
-                SizedBox(
-                  width: _bannerAds[9]!.size.width.toDouble(),
-                  height: _bannerAds[9]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[9]!),
-                ),
+              if (_bannerAds.isNotEmpty && _bannerAds[0] != null)
+                createAd(0),
+              if (_bannerAds.length > 1 && _bannerAds[1] != null)
+                createAd(1),
+              if (_bannerAds.length > 2 && _bannerAds[2] != null)
+                createAd(2),
+              if (_bannerAds.length > 3 && _bannerAds[3] != null)
+                createAd(3),
+              if (_bannerAds.length > 4 && _bannerAds[4] != null)
+                createAd(4),
+              if (_bannerAds.length > 5 && _bannerAds[5] != null)
+                createAd(5),
+              if (_bannerAds.length > 6 && _bannerAds[6] != null)
+                createAd(6),
+              if (_bannerAds.length > 7 && _bannerAds[7] != null)
+                createAd(7),
+              if (_bannerAds.length > 8 && _bannerAds[8] != null)
+                createAd(8),
+              if (_bannerAds.length > 9 && _bannerAds[9] != null)
+                createAd(9),
               const ListTile(
                 title: Text('Some title'),
               ),
@@ -173,69 +133,37 @@ class BannerExampleState extends State<BannerExample> {
               const ListTile(
                 title: Text('Some title'),
               ),
-              if (_bannerAds[10] != null)
-                SizedBox(
-                  width: _bannerAds[10]!.size.width.toDouble(),
-                  height: _bannerAds[10]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[10]!),
-                ),
-              if (_bannerAds[11] != null)
-                SizedBox(
-                  width: _bannerAds[11]!.size.width.toDouble(),
-                  height: _bannerAds[11]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[11]!),
-                ),
-              if (_bannerAds[12] != null)
-                SizedBox(
-                  width: _bannerAds[12]!.size.width.toDouble(),
-                  height: _bannerAds[12]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[12]!),
-                ),
-              if (_bannerAds[3] != null)
-                SizedBox(
-                  width: _bannerAds[13]!.size.width.toDouble(),
-                  height: _bannerAds[13]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[13]!),
-                ),
-              if (_bannerAds[14] != null)
-                SizedBox(
-                  width: _bannerAds[14]!.size.width.toDouble(),
-                  height: _bannerAds[14]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[14]!),
-                ),
-              if (_bannerAds[15] != null)
-                SizedBox(
-                  width: _bannerAds[15]!.size.width.toDouble(),
-                  height: _bannerAds[15]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[15]!),
-                ),
-              if (_bannerAds[16] != null)
-                SizedBox(
-                  width: _bannerAds[16]!.size.width.toDouble(),
-                  height: _bannerAds[16]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[16]!),
-                ),
-              if (_bannerAds[17] != null)
-                SizedBox(
-                  width: _bannerAds[17]!.size.width.toDouble(),
-                  height: _bannerAds[17]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[17]!),
-                ),
-              if (_bannerAds[18] != null)
-                SizedBox(
-                  width: _bannerAds[18]!.size.width.toDouble(),
-                  height: _bannerAds[18]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[18]!),
-                ),
-              if (_bannerAds[19] != null)
-                SizedBox(
-                  width: _bannerAds[19]!.size.width.toDouble(),
-                  height: _bannerAds[19]!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAds[19]!),
-                ),
+              if (_bannerAds.length > 10 && _bannerAds[10] != null)
+                createAd(10),
+              if (_bannerAds.length > 11 && _bannerAds[11] != null)
+                createAd(11),
+              if (_bannerAds.length > 12 && _bannerAds[12] != null)
+                createAd(12),
+              if (_bannerAds.length > 13 && _bannerAds[13] != null)
+                createAd(13),
+              if (_bannerAds.length > 14 && _bannerAds[14] != null)
+                createAd(14),
+              if (_bannerAds.length > 15 && _bannerAds[15] != null)
+                createAd(15),
+              if (_bannerAds.length > 16 && _bannerAds[16] != null)
+                createAd(16),
+              if (_bannerAds.length > 17 && _bannerAds[17] != null)
+                createAd(17),
+              if (_bannerAds.length > 18 && _bannerAds[18] != null)
+                createAd(18),
+              if (_bannerAds.length > 19 && _bannerAds[19] != null)
+                createAd(19),
             ],
           ),
         ));
+  }
+
+  SizedBox createAd(int index) {
+    return SizedBox(
+                width: _bannerAds[index]!.size.width.toDouble(),
+                height: _bannerAds[index]!.size.height.toDouble(),
+                child: AdWidget(ad: _bannerAds[index]!),
+              );
   }
 
   /// Loads and shows a banner ad.
